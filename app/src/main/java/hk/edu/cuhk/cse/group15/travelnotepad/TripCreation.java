@@ -1,0 +1,13 @@
+package hk.edu.cuhk.cse.group15.travelnotepad;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class TripCreation extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.trip_creation);
+    }
+}
