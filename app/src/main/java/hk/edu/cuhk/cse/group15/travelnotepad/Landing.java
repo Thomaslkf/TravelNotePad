@@ -1,10 +1,12 @@
 package hk.edu.cuhk.cse.group15.travelnotepad;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import hk.edu.cuhk.cse.group15.travelnotepad.DataPackage.TripData;
+import android.util.Log;
+import android.view.View;
 
 public class Landing extends AppCompatActivity {
     private RecyclerView tripListRecyclerView;
@@ -19,13 +21,18 @@ public class Landing extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         tripListRecyclerView.setLayoutManager(layoutManager);
 
-//      Get Data
-        TripData[] data = {
-            new TripData("Grad Trip", "Hong Kong", "Tokyo", "2019/05/22"),
-            new TripData("Family Trip", "Hong Kong", "Taipei", "2019/05/31"),
-        };
+        DataPackage.purgeData(this);
+        DataPackage.generateTestData(this);
+        DataPackage dataPackage  = DataPackage.readDataFromStorage(this);
 
-        mAdapter = new TripListAdapter(data);
+        mAdapter = new TripListAdapter(dataPackage.tripData);
         tripListRecyclerView.setAdapter(mAdapter);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setImageResource(android.R.drawable.arrow_up_float);
+    }
+
+    public void newTrip(View view){
+        Log.d("newTrip", "Pressed");
     }
 }
