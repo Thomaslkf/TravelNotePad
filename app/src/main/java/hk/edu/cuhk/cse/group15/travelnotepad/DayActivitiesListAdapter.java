@@ -7,12 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import hk.edu.cuhk.cse.group15.travelnotepad.DataPackage.TripData;
 
-public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.MyViewHolder> {
-    private List<TripData> TripData;
+public class DayActivitiesListAdapter extends RecyclerView.Adapter<DayActivitiesListAdapter.MyViewHolder> {
+    private List<ArrayList<DataPackage.TripData.Checkpoint>> DayActivities;
+    private Date[] Date;
     private SimpleDateFormat dateFormat;
 
     // Provide a reference to the views for each data item
@@ -20,29 +24,29 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.MyView
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView TripNameView;
-        public TextView TripDstView;
-        public TextView TripDateView;
+        public TextView dayNumberView;
+        public TextView dateView;
+
         public MyViewHolder(View v) {
             super(v);
-            TripNameView = v.findViewById(R.id.TripNameDisplay);
-            TripDstView = v.findViewById(R.id.TripDstDisplay);
-            TripDateView = v.findViewById(R.id.TripDateDisplay);
+            dayNumberView = v.findViewById(R.id.DayNumberDisplay);
+            dateView = v.findViewById(R.id.DateDisplay);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public TripListAdapter(List<TripData> input) {
-        TripData = input;
+    public DayActivitiesListAdapter(List<ArrayList<DataPackage.TripData.Checkpoint>> input, Date[] Date) {
         dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DayActivities = input;
+        this.Date = Date;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public TripListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+    public DayActivitiesListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                            int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_list_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.day_activities_list_item, parent, false);
 
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -51,17 +55,17 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.MyView
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.TripNameView.setText(TripData.get(position).name);
-        holder.TripDstView.setText(TripData.get(position).origin + " - " + TripData.get(position).dst);
-        holder.TripDateView.setText(dateFormat.format(TripData.get(position).date[0]) + " ~ "  + dateFormat.format(TripData.get(position).date[1]) );
+        holder.dayNumberView.setText( "Day " + (position + 1) );
 
+        Calendar c = Calendar.getInstance();
+        c.setTime(this.Date[0]);
+        c.add(Calendar.DATE, position);
+        holder.dateView.setText(dateFormat.format(c.getTime()));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return TripData.size();
+        return DayActivities.size();
     }
 }

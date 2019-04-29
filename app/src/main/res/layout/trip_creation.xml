@@ -5,21 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TripCreation">
+
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingTop="16dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/title_basic"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
                 android:text="Basic"
-                android:textSize="15dp"
                 android:textColor="#009789"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,126 +39,169 @@
                 android:id="@+id/title_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Name"
-                android:textSize="20dp"
                 android:layout_below="@+id/title_basic"
-                />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:hint="Name"
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/title_date"
-                android:layout_width="match_parent"
+                android:id="@+id/title_from_date"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Date"
-                android:textSize="20dp"
-                android:layout_below="@+id/title_name" />
+                android:layout_below="@+id/title_name"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="From"
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/title_location"
+                android:id="@+id/title_end_date"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_name"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toRightOf="@+id/title_from_date"
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="To"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/title_location_origin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Location"
-                android:textSize="20dp"
-                android:layout_below="@+id/title_date" />
+                android:layout_below="@+id/title_end_date"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:hint="Origin"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/title_location_dst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_location_origin"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:hint="Destination"
+                android:textSize="14sp" />
 
             <View
                 android:id="@+id/hLine"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="30dp"
-                android:background="#D0D0D0"
-                android:layout_below="@+id/title_location"
-                />
+                android:layout_below="@+id/title_location_dst"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#D0D0D0" />
 
             <TextView
                 android:id="@+id/title_advice"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/hLine"
                 android:layout_marginStart="10dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="8dp"
                 android:text="Recomand places from us!"
-                android:textSize="15dp"
                 android:textColor="#009789"
-                android:layout_below="@id/hLine" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/advice01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/title_advice"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text= " - Place 01"
-                android:textSize="20dp"
-                android:layout_below="@id/title_advice" />
+                android:text=" - Place 01"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/advice02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/advice01"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text= " - Place 02"
-                android:textSize="20dp"
-                android:layout_below="@id/advice01" />
+                android:text=" - Place 02"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/advice03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/advice02"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text= " - Place 03"
-                android:textSize="20dp"
-                android:layout_below="@id/advice02" />
+                android:text=" - Place 03"
+                android:textSize="14sp" />
 
             <View
                 android:id="@+id/hLine_2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="30dp"
-                android:background="#D0D0D0"
                 android:layout_below="@+id/advice03"
-                />
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#D0D0D0" />
 
             <TextView
                 android:id="@+id/title_day_activities"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/hLine_2"
                 android:layout_marginStart="10dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="8dp"
                 android:text="Day Activies"
-                android:textSize="15dp"
                 android:textColor="#009789"
-                android:layout_below="@id/hLine_2" />
+                android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/add_day_button"
-                android:layout_width="wrap_content"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/dayActivities_list_wrapper"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="#FFFFFF"
-                android:text="- Click here to create day activies - "
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/title_day_activities"
-                />
+                android:layout_below="@+id/title_day_activities"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/day_activities_list_recycler_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
 
             <Button
                 android:id="@+id/button_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="Create"
-                android:textStyle="bold"
+                android:layout_below="@+id/dayActivities_list_wrapper"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="8dp"
                 android:background="@color/lightGreen"
-                android:layout_below="@id/add_day_button" />
+                android:clickable="true"
+                android:onClick="createTrip"
+                android:text="Create"
+                android:textStyle="bold" />
 
 
         </RelativeLayout>

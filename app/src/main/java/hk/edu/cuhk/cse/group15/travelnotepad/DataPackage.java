@@ -25,30 +25,47 @@ public class DataPackage {
             public String name;
             public double[] coordinate = new double[2];
 
-            public Checkpoint(String name, double lat, double lng){
-                this.name = name;
-                this.coordinate[0] = lat;
-                this.coordinate[1] = lng;
-            }
+            public Checkpoint(){}
         }
 
         public String name;
         public String origin;
         public String dst;
-        public Date[] duration = new Date[2];
+        public Date[] date = new Date[2];
 
         public List<ArrayList<Checkpoint>> dayActivity = new ArrayList<>();
 
-        public TripData( String name, String origin, String dst, String start_date, String end_date){
+        public TripData(){
+
+            updateTripDate("2018/01/01", "2018/01/01");
+        }
+
+        public TripData( String name, String origin, String dst, String start_date, String end_date, int duration) {
             this.name = name;
             this.origin = origin;
             this.dst = dst;
 
-            java.text.SimpleDateFormat simple = new SimpleDateFormat();
-            simple.applyPattern("yyyy/MM/dd");
+            SimpleDateFormat simple = new SimpleDateFormat("yyyy/MM/dd");
             try {
-                this.duration[0] = simple.parse(start_date);
-                this.duration[1] = simple.parse(end_date);
+                this.date[0] = simple.parse(start_date);
+                this.date[1] = simple.parse(end_date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void initiateDayActivity(int duration){
+            dayActivity.clear();
+            for (int i = 0; i < duration; i++) {
+                dayActivity.add(new ArrayList<Checkpoint>());
+            }
+        }
+
+        public void updateTripDate(String from_date, String to_date){
+            SimpleDateFormat simple = new SimpleDateFormat("yyyy/MM/dd");
+            try {
+                date[0] = simple.parse(from_date);
+                date[1] = simple.parse(to_date);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -57,18 +74,18 @@ public class DataPackage {
 
     static void generateTestData(Context context) {
         TripData tripData[] = {
-                new TripData("Grad Trip", "Hong Kong", "Tokyo", "2019/05/22", "2019/05/25"),
-                new TripData("Family Trip", "Hong Kong", "Taipei", "2019/05/31", "2019/06/5"),
+                new TripData("Grad Trip", "Hong Kong", "Tokyo", "2019/05/22", "2019/05/25", 4),
+                new TripData("Family Trip", "Hong Kong", "Taipei", "2019/05/31", "2019/06/5", 6),
         };
 
         DataPackage dp = new DataPackage();
         dp.tripData.add(tripData[0]);
         dp.tripData.add(tripData[1]);
 
-        dp.writeDatToStorage(context);
+        dp.writeDataToStorage(context);
     };
 
-    void writeDatToStorage(Context context) {
+    void writeDataToStorage(Context context) {
         try {
             Gson gson = new Gson();
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("data.txt", Context.MODE_PRIVATE));
@@ -110,7 +127,7 @@ public class DataPackage {
 
     static void purgeData(Context context){
 
-        new DataPackage().writeDatToStorage(context);
+        new DataPackage().writeDataToStorage(context);
     };
 
 }

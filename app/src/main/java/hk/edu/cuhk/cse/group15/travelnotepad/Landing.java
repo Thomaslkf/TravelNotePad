@@ -1,5 +1,6 @@
 package hk.edu.cuhk.cse.group15.travelnotepad;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 
 public class Landing extends AppCompatActivity {
+    public static final int TEXT_REQUEST = 1;
+    
     private RecyclerView tripListRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -21,8 +24,8 @@ public class Landing extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         tripListRecyclerView.setLayoutManager(layoutManager);
 
-        DataPackage.purgeData(this);
-        DataPackage.generateTestData(this);
+//        DataPackage.purgeData(this);
+//        DataPackage.generateTestData(this);
         DataPackage dataPackage  = DataPackage.readDataFromStorage(this);
 
         mAdapter = new TripListAdapter(dataPackage.tripData);
@@ -33,6 +36,7 @@ public class Landing extends AppCompatActivity {
     }
 
     public void newTrip(View view){
-        Log.d("newTrip", "Pressed");
+        Intent intent = new Intent(Landing.this, TripCreation.class);
+        startActivityForResult(intent, TEXT_REQUEST);
     }
 }
