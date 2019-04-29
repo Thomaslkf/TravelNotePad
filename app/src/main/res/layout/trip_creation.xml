@@ -5,76 +5,154 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TripCreation">
-
-    <TextView
-        android:id="@+id/title_basic"
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Basic"
-        android:textSize="15dp"
-        android:textColor="#009789"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/title_basic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Basic"
+                android:textSize="15dp"
+                android:textColor="#009789"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/title_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        android:hint="Name"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_basic" />
+            <EditText
+                android:id="@+id/title_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Name"
+                android:textSize="20dp"
+                android:layout_below="@+id/title_basic"
+                />
 
-    <EditText
-        android:id="@+id/title_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        android:hint="Date"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_name" />
+            <EditText
+                android:id="@+id/title_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Date"
+                android:textSize="20dp"
+                android:layout_below="@+id/title_name" />
 
-    <EditText
-        android:id="@+id/title_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        android:hint="Location"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_date" />
+            <EditText
+                android:id="@+id/title_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Location"
+                android:textSize="20dp"
+                android:layout_below="@+id/title_date" />
 
-    <View
-        android:id="@+id/hLine"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="30dp"
-        android:background="#D0D0D0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_location"
-        />
+            <View
+                android:id="@+id/hLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="30dp"
+                android:background="#D0D0D0"
+                android:layout_below="@+id/title_location"
+                />
 
-    <TextView
-        android:id="@+id/title_advice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Recomand places from us!"
-        android:textSize="15dp"
-        android:textColor="#009789"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/hLine" />
+            <TextView
+                android:id="@+id/title_advice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Recomand places from us!"
+                android:textSize="15dp"
+                android:textColor="#009789"
+                android:layout_below="@id/hLine" />
+
+            <TextView
+                android:id="@+id/advice01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text= " - Place 01"
+                android:textSize="20dp"
+                android:layout_below="@id/title_advice" />
+
+            <TextView
+                android:id="@+id/advice02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text= " - Place 02"
+                android:textSize="20dp"
+                android:layout_below="@id/advice01" />
+
+            <TextView
+                android:id="@+id/advice03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text= " - Place 03"
+                android:textSize="20dp"
+                android:layout_below="@id/advice02" />
+
+            <View
+                android:id="@+id/hLine_2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="30dp"
+                android:background="#D0D0D0"
+                android:layout_below="@+id/advice03"
+                />
+
+            <TextView
+                android:id="@+id/title_day_activities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Day Activies"
+                android:textSize="15dp"
+                android:textColor="#009789"
+                android:layout_below="@id/hLine_2" />
+
+            <Button
+                android:id="@+id/add_day_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:text="- Click here to create day activies - "
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/title_day_activities"
+                />
+
+            <Button
+                android:id="@+id/button_create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Create"
+                android:textStyle="bold"
+                android:background="@color/lightGreen"
+                android:layout_below="@id/add_day_button" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
 
 
 
