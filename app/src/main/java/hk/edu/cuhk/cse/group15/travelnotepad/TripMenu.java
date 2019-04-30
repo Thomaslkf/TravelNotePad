@@ -52,5 +52,10 @@ public class TripMenu extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
-    public void openShoppingCart(View v){}
+    public void openShoppingCart(View v){
+        Intent intent = new Intent(TripMenu.this, ShopingCartViewer.class);
+        intent.putExtra(EXTRA_TRIPDATA_POS, trip_pos);
+
+        startActivityForResult(intent, 1);
+    }
 }

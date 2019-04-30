@@ -24,9 +24,22 @@ public class DataPackage {
     static class TripData {
         static class Checkpoint {
             public String name;
-            public double[] coordinate = new double[2];
+            public Address address;
+            public String description;
+            public List<String> shoppingCart = new ArrayList<>();
 
             public Checkpoint(){}
+
+            public static Checkpoint getDummy() {
+                Checkpoint c = new Checkpoint();
+                c.name = "Dummy Checkpoint";
+                c.description = "Dummy Des";
+
+                c.shoppingCart.add("Dummy Item #1");
+                c.shoppingCart.add("Dummy Item #2");
+
+                return c;
+            }
         }
 
         public String name;
@@ -45,6 +58,7 @@ public class DataPackage {
             dayActivity.clear();
             for (int i = 0; i < duration; i++) {
                 dayActivity.add(new ArrayList<Checkpoint>());
+                dayActivity.get(dayActivity.size()-1).add(Checkpoint.getDummy());
             }
         }
 

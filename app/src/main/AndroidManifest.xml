@@ -22,7 +22,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DayActivitiesPicker"></activity>
+        <activity android:name=".DayActivityEditor"></activity>
+        <activity android:name=".ShopingCartViewer" />
+        <activity android:name=".DayActivitiesPicker" />
         <activity
             android:name=".TripMenu"
             android:parentActivityName=".Landing" />

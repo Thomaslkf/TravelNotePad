@@ -37,9 +37,6 @@ public class Landing extends AppCompatActivity {
         tripData = dataPackage.tripData;
         mAdapter = new TripListAdapter(tripData);
         tripListRecyclerView.setAdapter(mAdapter);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setImageResource(android.R.drawable.arrow_up_float);
     }
 
     public void newTrip(View view){
