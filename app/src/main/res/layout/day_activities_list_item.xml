@@ -76,9 +76,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/hard_border"
+            android:onClick="dayOnClick"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
                 android:id="@+id/DayActivitiesListButton"

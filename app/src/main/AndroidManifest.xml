@@ -22,10 +22,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DayActivitiesPicker"></activity>
         <activity
             android:name=".TripMenu"
-            android:parentActivityName=".Landing"
-        ></activity>
+            android:parentActivityName=".Landing" />
         <activity android:name=".Landing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,8 +33,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".TripCreation" />
+        <activity android:name=".TripCreation" />
+        <activity android:name=".DailyDetails" />
         <activity
             android:name="com.schibstedspain.leku.LocationPickerActivity"
             android:label="@string/leku_title_activity_location_picker"

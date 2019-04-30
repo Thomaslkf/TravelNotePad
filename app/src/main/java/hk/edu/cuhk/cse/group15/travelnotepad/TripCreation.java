@@ -282,4 +282,8 @@ public class TripCreation extends AppCompatActivity {
 
         finish();
     }
+
+    public void dayOnClick(View v){
+        Log.d("day", "editor");
+    }
 }

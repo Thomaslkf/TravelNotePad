@@ -28,7 +28,12 @@ public class TripMenu extends AppCompatActivity {
         tripData = dataPackage.tripData.get(trip_pos);
     }
 
-    public void startTrip(View v){}
+    public void startTrip(View v){
+        Intent intent = new Intent(TripMenu.this, DayActivitiesPicker.class);
+        intent.putExtra(EXTRA_TRIPDATA_POS, trip_pos);
+
+        startActivityForResult(intent, 1);
+    }
 
     public void viewTrip(View v){
         Intent intent = new Intent(TripMenu.this, TripCreation.class);

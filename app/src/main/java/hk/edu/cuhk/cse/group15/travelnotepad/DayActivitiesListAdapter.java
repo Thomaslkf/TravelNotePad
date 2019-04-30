@@ -25,11 +25,13 @@ public class DayActivitiesListAdapter extends RecyclerView.Adapter<DayActivities
         // each data item is just a string in this case
         public TextView dayNumberView;
         public TextView dateView;
+        public View DayActivitiesListButtonWrapper;
 
         public MyViewHolder(View v) {
             super(v);
             dayNumberView = v.findViewById(R.id.DayNumberDisplay);
             dateView = v.findViewById(R.id.DateDisplay);
+            DayActivitiesListButtonWrapper = v.findViewById(R.id.DayActivitiesListButtonWrapper);
         }
     }
 
@@ -60,6 +62,7 @@ public class DayActivitiesListAdapter extends RecyclerView.Adapter<DayActivities
         c.setTime(this.Date[0]);
         c.add(Calendar.DATE, position);
         holder.dateView.setText(dateFormat.format(c.getTime()));
+        holder.DayActivitiesListButtonWrapper.setTag(position);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
