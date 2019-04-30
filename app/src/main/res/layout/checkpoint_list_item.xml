@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/hard_border">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Address"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="dfdfg"
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/fullAddress"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text=" TextView TextView TextView TextView TextView TextView TextView TextView  TextView TextView TextView TextView TextView TextView TextView TextView"
+            android:textAlignment="viewStart" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/deleteWrapper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/hard_border"
+                android:onClick="delete"
+                android:paddingLeft="4dp"
+                android:paddingTop="8dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="8dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_clear_black_24dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/UpWrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/hard_border"
+                android:onClick="clickUp"
+                android:paddingLeft="4dp"
+                android:paddingTop="8dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_up_black_24dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/DownWrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/hard_border"
+                android:onClick="clickDown"
+                android:paddingLeft="4dp"
+                android:paddingTop="8dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="8dp">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/AddWrapper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/hard_border"
+                android:paddingLeft="4dp"
+                android:paddingTop="8dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="8dp"
+                tools:layout_editor_absoluteX="127dp"
+                tools:layout_editor_absoluteY="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

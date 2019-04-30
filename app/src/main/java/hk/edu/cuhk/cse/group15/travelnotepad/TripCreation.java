@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout.LayoutParams;
-import android.widget.ScrollView;
 
 import com.schibstedspain.leku.LocationPickerActivity;
 
@@ -33,6 +32,7 @@ public class TripCreation extends AppCompatActivity {
     private static final int MAP_BUTTON_REQUEST_CODE = 1;
     private static final String EXTRA_IS_NEW_TRIP = "EXTRA_IS_NEW_TRIP";
     private static final String EXTRA_TRIPDATA_POS = "EXTRA_TRIPDATA_POS";
+    private static final String EXTRA_DAY_NUMBER = "EXTRA_DAY_NUMBER";
     private static final String EXTRA_READONLY = "EXTRA_READONLY";
 
     // Field
@@ -254,6 +254,12 @@ public class TripCreation extends AppCompatActivity {
                 Log.d("MAP - RESULT****", "CANCELLED");
             }
         }
+//        if(requestCode == 2){
+//            if(isNewTrip){
+//                isNewTrip = false;
+//                trip_pos =  dataPackage.tripData.size();
+//            }
+//        }
     }
 
     private final LocationListener mLocationListener = new LocationListener() {
@@ -284,6 +290,11 @@ public class TripCreation extends AppCompatActivity {
     }
 
     public void dayOnClick(View v){
-        Log.d("day", "editor");
+        Intent intent = new Intent(this, DayActivityEditor.class);
+        intent.putExtra(EXTRA_TRIPDATA_POS, trip_pos);
+        intent.putExtra(EXTRA_DAY_NUMBER, (int)v.getTag());
+        intent.putExtra(EXTRA_READONLY, isReadOnly);
+
+        startActivityForResult(intent, 2);
     }
 }
