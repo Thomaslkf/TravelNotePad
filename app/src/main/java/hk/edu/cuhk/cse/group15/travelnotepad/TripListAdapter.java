@@ -33,7 +33,7 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.MyView
             TripOriginView = v.findViewById(R.id.TripOriginDisplay);
             TripDstView = v.findViewById(R.id.TripDstDisplay);
             TripDateView = v.findViewById(R.id.TripDateDisplay);
-            TripListButtonWrapper = v.findViewById(R.id.TripListButtonWrapper);
+                TripListButtonWrapper = v.findViewById(R.id.TripListButtonWrapper);
         }
     }
 

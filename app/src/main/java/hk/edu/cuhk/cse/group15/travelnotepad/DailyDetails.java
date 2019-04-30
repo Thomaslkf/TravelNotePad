@@ -20,6 +20,8 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import hk.edu.cuhk.cse.group15.travelnotepad.DataPackage.TripData.Checkpoint;
 
 public class DailyDetails extends FragmentActivity implements OnMapReadyCallback,TaskLoadedCallback {
@@ -34,9 +36,11 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
 
     private List<Checkpoint> dayActivities;
 
-    //for test
-    private String start_location = "Pavilion of Harmony";
-    private String end_location = "University Station";
+    //for RecyclerView
+    private RecyclerView timelineRecycler;
+    private RecyclerView.Adapter timelineAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,14 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
 
         Intent intent = getIntent();
         dayActivities = new Gson().fromJson(intent.getStringExtra("EXTRA_TRIPDATA"), List.class);
+
+        timelineRecycler = (RecyclerView) findViewById(R.id.timeline_recycler);
+        layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        timelineAdapter = new TimelineAdapter(dayActivities);
+        timelineRecycler.setAdapter(timelineAdapter);
+        timelineRecycler.setLayoutManager(layoutManager);
+
+
     }
 
     @Override
@@ -82,8 +94,6 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
         endOption = new MarkerOptions().position(endLocation);
         String url = getUrl(startOption.getPosition(),endOption.getPosition(),"transit");
         new FetchURL(DailyDetails.this).execute(url,"transit");
-//                polylineOption01 = new PolylineOptions().add(startLocation,endLocation).width(15).color(Color.BLUE);
-//                mMap.addPolyline(polylineOption01);
         builder = new LatLngBounds.Builder();
         builder.include(startOption.getPosition());
         builder.include(endOption.getPosition());
