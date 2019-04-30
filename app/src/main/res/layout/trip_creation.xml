@@ -7,6 +7,7 @@
     tools:context=".TripCreation">
 
     <ScrollView
+        android:id="@+id/wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="8dp"
@@ -248,7 +249,23 @@
                 android:clickable="true"
                 android:onClick="storeTrip"
                 android:text="Create"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dayActivities_list_wrapper"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/lightGreen"
+                android:clickable="true"
+                android:onClick="finish"
+                android:text="Back"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
 
         </RelativeLayout>

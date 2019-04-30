@@ -25,12 +25,15 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.MyView
         public TextView TripOriginView;
         public TextView TripDstView;
         public TextView TripDateView;
+        public View TripListButtonWrapper;
+
         public MyViewHolder(View v) {
             super(v);
             TripNameView = v.findViewById(R.id.TripNameDisplay);
             TripOriginView = v.findViewById(R.id.TripOriginDisplay);
             TripDstView = v.findViewById(R.id.TripDstDisplay);
             TripDateView = v.findViewById(R.id.TripDateDisplay);
+            TripListButtonWrapper = v.findViewById(R.id.TripListButtonWrapper);
         }
     }
 
@@ -66,6 +69,7 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.MyView
         holder.TripOriginView.setText(origin + " - ");
         holder.TripDstView.setText(dst);
         holder.TripDateView.setText(dateFormat.format(TripData.get(position).date[0]) + " ~ "  + dateFormat.format(TripData.get(position).date[1]) );
+        holder.TripListButtonWrapper.setTag(position);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
