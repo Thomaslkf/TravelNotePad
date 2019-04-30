@@ -1,6 +1,5 @@
 package hk.edu.cuhk.cse.group15.travelnotepad;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import hk.edu.cuhk.cse.group15.travelnotepad.DataPackage.TripData;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class DayActivitiesListAdapter extends RecyclerView.Adapter<DayActivitiesListAdapter.MyViewHolder> {
     private List<ArrayList<DataPackage.TripData.Checkpoint>> DayActivities;

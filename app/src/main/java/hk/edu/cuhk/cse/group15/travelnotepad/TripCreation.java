@@ -1,37 +1,59 @@
 package hk.edu.cuhk.cse.group15.travelnotepad;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-import java.text.ParseException;
+import com.schibstedspain.leku.LocationPickerActivity;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import static com.schibstedspain.leku.LocationPickerActivityKt.*;
 
 public class TripCreation extends AppCompatActivity {
+    // Field
+    private static final int MAP_BUTTON_REQUEST_CODE = 1;
     private SimpleDateFormat simple = new SimpleDateFormat("yyyy/MM/dd");
     private RecyclerView dayActivitiesListRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    // Data Package
     private DataPackage dataPackage;
     DataPackage.TripData tripData;
     private boolean isNewTrip = true;
 
+    // Date Picker
     final Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener from_date_listener;
     DatePickerDialog.OnDateSetListener end_date_listener;
     private long[] durationTracker = new long[2];
     int duration = 0;
 
+    // Map Picker
+    LocationManager mLocationManager;
+    private String lastOpenedMapPicker = "origin";
+    private Location loc;
+    private Address originAddress;
+    private Address dstAddress;
+
+    // View Reference
     EditText tripName;
     EditText tripOrigin;
     EditText tripDst;
@@ -45,6 +67,8 @@ public class TripCreation extends AppCompatActivity {
         dayActivitiesListRecyclerView = (RecyclerView) findViewById(R.id.day_activities_list_recycler_view);
         layoutManager = new LinearLayoutManager(this);
         dayActivitiesListRecyclerView.setLayoutManager(layoutManager);
+        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
 
         // Setup View Reference
         dataPackage = DataPackage.readDataFromStorage(this);
@@ -56,9 +80,9 @@ public class TripCreation extends AppCompatActivity {
 
         // Setup Date Picker
         setupDatePicker(from_date, from_date_listener, 0);
-        setupDatePicker(to_date, end_date_listener , 1);
+        setupDatePicker(to_date, end_date_listener, 1);
 
-        if(isNewTrip) {
+        if (isNewTrip) {
             // Create a new TripDate Object
             tripData = new DataPackage.TripData();
         } else {
@@ -70,7 +94,7 @@ public class TripCreation extends AppCompatActivity {
         dayActivitiesListRecyclerView.setAdapter(mAdapter);
     }
 
-    private void setupDatePicker(final EditText textField, DatePickerDialog.OnDateSetListener l, final int which){
+    private void setupDatePicker(final EditText textField, DatePickerDialog.OnDateSetListener l, final int which) {
         l = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -97,19 +121,19 @@ public class TripCreation extends AppCompatActivity {
         v.setText(simple.format(myCalendar.getTime()));
         tripData.updateTripDate(from_date.getText().toString(), to_date.getText().toString());
 
-        duration = (int)(((durationTracker[1]-durationTracker[0])/1000/3600/24) + 1);
+        duration = (int) (((durationTracker[1] - durationTracker[0]) / 1000 / 3600 / 24) + 1);
         if (duration > 0) {
             tripData.initiateDayActivity(duration);
             mAdapter.notifyDataSetChanged();
         }
     }
 
-    public void createTrip(View v){
-        if(isNewTrip) {
+    public void storeTrip(View v) {
+        if (isNewTrip) {
             // Update all field, just in case
             tripData.name = tripName.getText().toString();
-            tripData.origin = tripOrigin.getText().toString();
-            tripData.dst = tripDst.getText().toString();
+            tripData.origin = originAddress;
+            tripData.dst = dstAddress;
             tripData.updateTripDate(from_date.getText().toString(), to_date.getText().toString());
 
             dataPackage.tripData.add(tripData);
@@ -119,4 +143,78 @@ public class TripCreation extends AppCompatActivity {
 
         dataPackage.writeDataToStorage(this);
     }
+
+    // Map
+    public void openMap(View v) {
+        lastOpenedMapPicker = (String) v.getTag();
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        } else {
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, mLocationListener);
+        }
+
+        Intent locationPickerIntent = new LocationPickerActivity.Builder()
+        .shouldReturnOkOnBackPressed()
+        .withZipCodeHidden()
+        .withSatelliteViewHidden()
+        .withGooglePlacesEnabled()
+        .withGoogleTimeZoneEnabled()
+        .withVoiceSearchHidden()
+        .withUnnamedRoadHidden()
+        .build(TripCreation.this);
+
+        startActivityForResult(locationPickerIntent, MAP_BUTTON_REQUEST_CODE);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            Log.d("MAP - RESULT****", "OK");
+            double latitude = data.getDoubleExtra(LATITUDE, 0.0);
+            Log.d("MAP - LATITUDE****", Double.toString(latitude));
+            double longitude = data.getDoubleExtra(LONGITUDE, 0.0);
+            Log.d("MAP - LONGITUDE****", Double.toString(longitude));
+            String address = data.getStringExtra(LOCATION_ADDRESS);
+            Log.d("MAP - ADDRESS****", address.toString());
+            Address fullAddress = data.getParcelableExtra(ADDRESS);
+            if (fullAddress != null) {
+                Log.d("MAP - FULL ADDRESS****", fullAddress.toString());
+            }
+
+            if (lastOpenedMapPicker.equals("origin")) {
+                originAddress = fullAddress;
+                String txt = originAddress.getCountryName();
+                this.tripOrigin.setText(txt);
+            } else {
+                dstAddress = fullAddress;
+                String txt = dstAddress.getCountryName() + ", " + (dstAddress.getAdminArea() == null ? dstAddress.getFeatureName() : dstAddress.getAdminArea());
+                this.tripDst.setText(txt);
+            }
+
+            if (resultCode == Activity.RESULT_CANCELED) {
+                Log.d("MAP - RESULT****", "CANCELLED");
+            }
+        }
+    }
+
+    private final LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(final Location location) {
+            //your code here
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
 }

@@ -1,6 +1,7 @@
 package hk.edu.cuhk.cse.group15.travelnotepad;
 
 import android.content.Context;
+import android.location.Address;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -29,8 +30,8 @@ public class DataPackage {
         }
 
         public String name;
-        public String origin;
-        public String dst;
+        public Address origin;
+        public Address dst;
         public Date[] date = new Date[2];
 
         public List<ArrayList<Checkpoint>> dayActivity = new ArrayList<>();
@@ -38,20 +39,6 @@ public class DataPackage {
         public TripData(){
 
             updateTripDate("2018/01/01", "2018/01/01");
-        }
-
-        public TripData( String name, String origin, String dst, String start_date, String end_date, int duration) {
-            this.name = name;
-            this.origin = origin;
-            this.dst = dst;
-
-            SimpleDateFormat simple = new SimpleDateFormat("yyyy/MM/dd");
-            try {
-                this.date[0] = simple.parse(start_date);
-                this.date[1] = simple.parse(end_date);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
         }
 
         public void initiateDayActivity(int duration){
@@ -71,19 +58,6 @@ public class DataPackage {
             }
         }
     }
-
-    static void generateTestData(Context context) {
-        TripData tripData[] = {
-                new TripData("Grad Trip", "Hong Kong", "Tokyo", "2019/05/22", "2019/05/25", 4),
-                new TripData("Family Trip", "Hong Kong", "Taipei", "2019/05/31", "2019/06/5", 6),
-        };
-
-        DataPackage dp = new DataPackage();
-        dp.tripData.add(tripData[0]);
-        dp.tripData.add(tripData[1]);
-
-        dp.writeDataToStorage(context);
-    };
 
     void writeDataToStorage(Context context) {
         try {
@@ -122,7 +96,10 @@ public class DataPackage {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
 
-        return new Gson().fromJson(ret, DataPackage.class);
+        if(ret.length() > 0)
+            return new Gson().fromJson(ret, DataPackage.class);
+        else
+            return new DataPackage();
     }
 
     static void purgeData(Context context){
