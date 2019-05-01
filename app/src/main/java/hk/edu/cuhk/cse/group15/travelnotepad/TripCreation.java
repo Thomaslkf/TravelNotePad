@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.ScrollView;
 
 import com.schibstedspain.leku.LocationPickerActivity;
 

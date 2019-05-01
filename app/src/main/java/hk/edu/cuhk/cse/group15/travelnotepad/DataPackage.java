@@ -21,10 +21,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 
 public class DataPackage {
-    List<TripData> tripData = new ArrayList<TripData>();
+    public List<TripData> tripData = new ArrayList<TripData>();
 
-    static class TripData {
-        static class Checkpoint {
+    public static class TripData {
+        public static class Checkpoint {
             public String name;
             public Address address;
             public String description;
@@ -82,7 +82,7 @@ public class DataPackage {
         }
     }
 
-    void writeDataToStorage(Context context) {
+    public void writeDataToStorage(Context context) {
         try {
             Gson gson = new Gson();
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("data.txt", Context.MODE_PRIVATE));
@@ -94,7 +94,7 @@ public class DataPackage {
         }
     };
 
-    static DataPackage readDataFromStorage(Context context){
+    public static DataPackage readDataFromStorage(Context context){
         String ret = "";
         try {
             InputStream inputStream = context.openFileInput("data.txt");
@@ -125,7 +125,7 @@ public class DataPackage {
             return new DataPackage();
     }
 
-    static void purgeData(Context context){
+    public static void purgeData(Context context){
 
         new DataPackage().writeDataToStorage(context);
     };

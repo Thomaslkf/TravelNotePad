@@ -12,6 +12,7 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import hk.edu.cuhk.cse.group15.travelnotepad.activity.CloudDownload;
 
 public class Landing extends AppCompatActivity {
     private static final int TEXT_REQUEST = 1;
@@ -50,6 +51,11 @@ public class Landing extends AppCompatActivity {
         Intent intent = new Intent(Landing.this, TripMenu.class);
         intent.putExtra(EXTRA_TRIPDATA_POS, position);
         startActivityForResult(intent, TEXT_REQUEST);
+    }
+
+    public void cloudSync(View v){
+        Intent intent = new Intent(this, CloudDownload.class);
+        startActivity(intent);
     }
 
     @Override

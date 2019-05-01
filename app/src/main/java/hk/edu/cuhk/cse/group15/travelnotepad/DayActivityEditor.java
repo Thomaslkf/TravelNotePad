@@ -75,9 +75,6 @@ public class DayActivityEditor extends AppCompatActivity {
         tripData = dataPackage.tripData.get(trip_pos);
         checkpoints = tripData.dayActivity.get(day_number);
 
-        mAdapter = new CheckpointsListAdapter(checkpoints);
-        checkpointsRecyclerView.setAdapter(mAdapter);
-
         // Update front-end
         ((TextView)findViewById(R.id.title)).setText(tripData.name + " - Day " + (day_number+1));
 
@@ -91,6 +88,9 @@ public class DayActivityEditor extends AppCompatActivity {
             findViewById(R.id.ButtonWrapper).setVisibility(View.GONE);
             ((Button)findViewById(R.id.button_back)).setText("Back");
         }
+
+        mAdapter = new CheckpointsListAdapter(checkpoints);
+        checkpointsRecyclerView.setAdapter(mAdapter);
     }
 
     // Map
