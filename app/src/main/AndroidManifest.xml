@@ -22,7 +22,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CheckpointEditor"></activity>
+        <activity
+            android:name=".activity.CloudDownload"
+            android:parentActivityName=".Landing" />
+        <activity
+            android:name=".activity.CloudUpload"
+            android:parentActivityName=".TripMenu" />
+        <activity android:name=".CheckpointEditor" />
         <activity android:name=".DayActivityEditor" />
         <activity android:name=".ShopingCartViewer" />
         <activity android:name=".DayActivitiesPicker" />
@@ -56,6 +62,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAan4Mqd3nsmggTHwln65zaJtbNKev2FyI" />
+        <meta-data
+            android:name="server.address"
+            android:value="http://54.250.146.107:3310" />
     </application>
 
 </manifest>

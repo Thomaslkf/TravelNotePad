@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.checkerframework.checker.linear.qual.Linear;
-
 import java.util.ArrayList;
 
 public class CheckpointEditor extends AppCompatActivity {
