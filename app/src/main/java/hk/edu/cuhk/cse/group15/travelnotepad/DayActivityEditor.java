@@ -34,9 +34,12 @@ import static com.schibstedspain.leku.LocationPickerActivityKt.LONGITUDE;
 
 public class DayActivityEditor extends AppCompatActivity {
     private static final int MAP_BUTTON_REQUEST_CODE = 1;
+    private static final String EXTRA_POS = "EXTRA_POS";
     private static final String EXTRA_TRIPDATA_POS = "EXTRA_TRIPDATA_POS";
     private static final String EXTRA_DAY_NUMBER = "EXTRA_DAY_NUMBER";
     private static final String EXTRA_READONLY = "EXTRA_READONLY";
+    private static final String EXTRA_DES = "EXTRA_DES";
+    private static final String EXTRA_LIST = "EXTRA_LIST";
 
     private RecyclerView checkpointsRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -135,7 +138,7 @@ public class DayActivityEditor extends AppCompatActivity {
     };
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == Activity.RESULT_OK && data != null) {
+        if (resultCode == Activity.RESULT_OK && data != null && requestCode == 1) {
             Log.d("MAP - RESULT****", "OK");
             double latitude = data.getDoubleExtra(LATITUDE, 0.0);
             Log.d("MAP - LATITUDE****", Double.toString(latitude));
@@ -155,6 +158,11 @@ public class DayActivityEditor extends AppCompatActivity {
             mAdapter.notifyDataSetChanged();
         }
 
+        if(resultCode == Activity.RESULT_OK && requestCode == 2){
+            int pos = data.getIntExtra(EXTRA_POS,-1);
+            checkpoints.get(pos).shoppingCart = data.getStringArrayListExtra(EXTRA_LIST);
+            checkpoints.get(pos).description = data.getStringExtra(EXTRA_DES);
+        }
     }
 
     public void finish(View v){
@@ -187,5 +195,15 @@ public class DayActivityEditor extends AppCompatActivity {
             checkpoints.set(pos-1, temp);
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    public void openCheckpointEditor(View v){
+        int pos = (int)v.getTag();
+        Intent intent = new Intent(this, CheckpointEditor.class);
+        intent.putExtra(EXTRA_POS, pos);
+        intent.putExtra(EXTRA_DES, checkpoints.get(pos).description);
+        intent.putStringArrayListExtra(EXTRA_LIST, (ArrayList<String>) checkpoints.get(pos).shoppingCart);
+
+        startActivityForResult(intent, 2);
     }
 }

@@ -44,7 +44,7 @@ public class DayActivitiesPicker extends AppCompatActivity {
         dataPackage = DataPackage.readDataFromStorage(this);
         DataPackage.TripData td = dataPackage.tripData.get(trip_pos);
 
-        mAdapter = new DayActivitiesListAdapter(td.dayActivity, td.date);
+        mAdapter = new DayActivitiesListAdapter(td.dayActivity, td.date, false);
         dayActivitiesListRecyclerView.setAdapter(mAdapter);
         setTitle("Start " + td.name);
     }

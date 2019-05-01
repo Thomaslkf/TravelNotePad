@@ -17,6 +17,7 @@ public class DayActivitiesListAdapter extends RecyclerView.Adapter<DayActivities
     private List<ArrayList<DataPackage.TripData.Checkpoint>> DayActivities;
     private Date[] Date;
     private SimpleDateFormat dateFormat;
+    private boolean isNewTrip;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -36,9 +37,10 @@ public class DayActivitiesListAdapter extends RecyclerView.Adapter<DayActivities
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public DayActivitiesListAdapter(List<ArrayList<DataPackage.TripData.Checkpoint>> input, Date[] Date) {
+    public DayActivitiesListAdapter(List<ArrayList<DataPackage.TripData.Checkpoint>> input, Date[] Date, boolean isNewTrip) {
         dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         DayActivities = input;
+        this.isNewTrip = isNewTrip;
         this.Date = Date;
     }
 
@@ -63,6 +65,7 @@ public class DayActivitiesListAdapter extends RecyclerView.Adapter<DayActivities
         c.add(Calendar.DATE, position);
         holder.dateView.setText(dateFormat.format(c.getTime()));
         holder.DayActivitiesListButtonWrapper.setTag(position);
+        if(isNewTrip) holder.DayActivitiesListButtonWrapper.setVisibility(View.INVISIBLE);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

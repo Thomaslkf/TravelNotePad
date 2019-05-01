@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+
 public class DataPackage {
     List<TripData> tripData = new ArrayList<TripData>();
 
@@ -58,7 +60,7 @@ public class DataPackage {
             dayActivity.clear();
             for (int i = 0; i < duration; i++) {
                 dayActivity.add(new ArrayList<Checkpoint>());
-                dayActivity.get(dayActivity.size()-1).add(Checkpoint.getDummy());
+//                dayActivity.get(dayActivity.size()-1).add(Checkpoint.getDummy());
             }
         }
 
@@ -70,6 +72,13 @@ public class DataPackage {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            Gson gson = new Gson();
+            return gson.toJson(this, TripData.class);
         }
     }
 

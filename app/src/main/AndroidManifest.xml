@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DayActivityEditor"></activity>
+        <activity android:name=".CheckpointEditor"></activity>
+        <activity android:name=".DayActivityEditor" />
         <activity android:name=".ShopingCartViewer" />
         <activity android:name=".DayActivitiesPicker" />
         <activity

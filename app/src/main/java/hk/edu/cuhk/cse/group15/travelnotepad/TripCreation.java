@@ -140,7 +140,7 @@ public class TripCreation extends AppCompatActivity {
             ((Button)findViewById(R.id.button_create)).setText(isNewTrip ? "Create" : "Save");
         }
 
-        mAdapter = new DayActivitiesListAdapter(tripData.dayActivity, tripData.date);
+        mAdapter = new DayActivitiesListAdapter(tripData.dayActivity, tripData.date, isNewTrip);
         dayActivitiesListRecyclerView.setAdapter(mAdapter);
     }
 
@@ -290,6 +290,8 @@ public class TripCreation extends AppCompatActivity {
     }
 
     public void dayOnClick(View v){
+        if(isNewTrip) return;
+
         Intent intent = new Intent(this, DayActivityEditor.class);
         intent.putExtra(EXTRA_TRIPDATA_POS, trip_pos);
         intent.putExtra(EXTRA_DAY_NUMBER, (int)v.getTag());
