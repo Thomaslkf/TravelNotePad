@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appBackground"
+    android:background="@color/snow"
     tools:context=".DailyDetails">
 
 
@@ -13,7 +13,10 @@
         android:id="@+id/timeline_recycler"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
 
 
     </androidx.recyclerview.widget.RecyclerView>

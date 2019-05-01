@@ -3,30 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
-    <!--<com.github.vipulasri.timelineview.TimelineView-->
-        <!--android:id="@+id/timeline"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:markerSize="20dp"-->
-        <!--app:lineOrientation="horizontal"-->
-        <!--app:marker="@drawable/ic_marker"-->
-        <!--/>-->
-    <!--&lt;!&ndash;app:lineWidth="2dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:startLineColor="@color/colorPrimary"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:endLineColor="@color/colorPrimary"&ndash;&gt;-->
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/time_node_line">
 
-    <TextView
-        android:id="@+id/numNode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:textSize="25dp"
-        android:textStyle="bold"/>
+        <!--<ImageView-->
+            <!--android:id="@+id/line"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:layout_marginStart="25dp"-->
+            <!--android:src="@drawable/time_node_line" />-->
+
+        <ImageView
+            android:id="@+id/lineNode"
+            android:layout_width="30dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/time_node__active_part" />
+
+        <TextView
+            android:id="@+id/numNode"
+            android:layout_width="12dp"
+            android:layout_height="26dp"
+            android:layout_alignStart="@+id/lineNode"
+            android:layout_alignTop="@+id/lineNode"
+            android:layout_alignEnd="@+id/lineNode"
+            android:layout_alignBottom="@+id/lineNode"
 
 
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="16dp"
+            android:text="1"
+            android:textColor="@color/snow"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-
+    </RelativeLayout>
 
 </LinearLayout>

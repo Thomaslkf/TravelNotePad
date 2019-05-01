@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -30,20 +31,23 @@ public class TimelineAdapter extends  RecyclerView.Adapter<TimelineAdapter.timeV
 
     @Override
     public void onBindViewHolder(@NonNull timeViewHolder holder, int position) {
-        holder.node.setText(Integer.toString(position));
+        holder.node.setText(Integer.toString(position+1));
     }
 
     @Override
     public int getItemCount() {
         return checkpointList.size();
+//        return 3;
     }
 
     public class timeViewHolder extends RecyclerView.ViewHolder{
         TextView node;
+        ImageView lineNode;
 
         public timeViewHolder(@NonNull View itemView) {
             super(itemView);
             node = itemView.findViewById(R.id.numNode);
+            lineNode = itemView.findViewById(R.id.lineNode);
         }
     }
 
