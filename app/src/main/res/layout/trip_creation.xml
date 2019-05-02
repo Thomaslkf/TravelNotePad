@@ -1,241 +1,278 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TripCreation">
 
-    <RelativeLayout
-        android:id="@+id/rl"
+    <ScrollView
+        android:id="@+id/wrapper"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="0dp">
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/title_basic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
-            android:text="Trip Info"
-            android:textColor="#009789"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/title_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_basic"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:hint="Name"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/title_from_date"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_name"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:clickable="true"
-            android:focusable="false"
-            android:hint="From"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/title_end_date"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_name"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:layout_toRightOf="@+id/title_from_date"
-            android:clickable="true"
-            android:focusable="false"
-            android:hint="To"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/title_location_origin"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_end_date"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:editable="false"
-            android:focusable="false"
-            android:hint="Origin"
-            android:onClick="openMap"
-            android:tag="origin"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/OriginMapPickerButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_from_date"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="-4dp"
-            android:layout_marginRight="8dp"
-            android:layout_toRightOf="@+id/title_location_origin"
-            android:background="@drawable/rounded_border"
-            android:focusable="false"
-            android:onClick="openMap"
-            android:tag="origin"
-            android:text="Open Map"
-            android:textAllCaps="false"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/title_location_dst"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_location_origin"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:focusable="false"
-            android:hint="Destination"
-            android:onClick="openMap"
-            android:tag="dst"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/DstMapPickerButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/OriginMapPickerButton"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_toRightOf="@+id/title_location_dst"
-            android:background="@drawable/rounded_border"
-            android:inputType="none"
-            android:onClick="openMap"
-            android:tag="dst"
-            android:text="Open Map"
-            android:textAllCaps="false"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/title_advice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_location_dst"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="8dp"
-            android:text="Recomand places from us!"
-            android:textColor="#009789"
-            android:textSize="18sp"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/advice01"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title_advice"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text=" - Place 01"
-            android:textSize="14sp"
-            android:visibility="gone" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/advice02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/advice01"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text=" - Place 02"
-            android:textSize="14sp"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/advice03"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/advice02"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text=" - Place 03"
-            android:textSize="14sp"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/title_day_activities"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_location_dst"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="8dp"
-            android:text="Day Activies"
-            android:textColor="#009789"
-            android:textSize="20sp" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/dayActivities_list_wrapper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_day_activities"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/day_activities_list_recycler_view"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/title_basic"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:text="Trip Info"
+                android:textColor="#009789"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:id="@+id/button_create"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dayActivities_list_wrapper"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="8dp"
-            android:background="@color/lightGreen"
-            android:clickable="true"
-            android:onClick="storeTrip"
-            android:text="Create"
-            android:textStyle="bold"
-            android:visibility="gone" />
+            <EditText
+                android:id="@+id/title_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_basic"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:hint="Name"
+                android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/button_back"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dayActivities_list_wrapper"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="8dp"
-            android:background="@color/lightGreen"
-            android:clickable="true"
-            android:onClick="finish"
-            android:text="Back"
-            android:textStyle="bold"
-            android:visibility="gone" />
+            <EditText
+                android:id="@+id/title_from_date"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_name"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="From"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/title_end_date"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_name"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toRightOf="@+id/title_from_date"
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="To"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/title_location_origin"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_end_date"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:editable="false"
+                android:focusable="false"
+                android:hint="Origin"
+                android:inputType="none"
+                android:onClick="openMap"
+                android:tag="origin"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/OriginMapPickerButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_from_date"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="-4dp"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@+id/title_location_origin"
+                android:background="@drawable/rounded_border"
+                android:focusable="false"
+                android:onClick="openMap"
+                android:tag="origin"
+                android:text="Open Map"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/title_location_dst"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_location_origin"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:focusable="false"
+                android:hint="Destination"
+                android:inputType="none"
+                android:onClick="openMap"
+                android:tag="dst"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/DstMapPickerButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/OriginMapPickerButton"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@+id/title_location_dst"
+                android:background="@drawable/rounded_border"
+                android:inputType="none"
+                android:onClick="openMap"
+                android:tag="dst"
+                android:text="Open Map"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
+
+            <View
+                android:id="@+id/hLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/title_location_dst"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#D0D0D0" />
+
+            <TextView
+                android:id="@+id/title_advice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/hLine"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="8dp"
+                android:text="Recomand places from us!"
+                android:textColor="#009789"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/advice01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_advice"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text=" - Place 01"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/advice02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/advice01"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text=" - Place 02"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/advice03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/advice02"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text=" - Place 03"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/hLine_2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/advice03"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#D0D0D0"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/title_day_activities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/hLine_2"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="8dp"
+                android:text="Day Activies"
+                android:textColor="#009789"
+                android:textSize="18sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dayActivities_list_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_day_activities"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/day_activities_list_recycler_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/button_create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dayActivities_list_wrapper"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/lightGreen"
+                android:clickable="true"
+                android:onClick="storeTrip"
+                android:text="Create"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dayActivities_list_wrapper"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/lightGreen"
+                android:clickable="true"
+                android:onClick="finish"
+                android:text="Back"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 
-</RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
