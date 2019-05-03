@@ -255,12 +255,10 @@ public class TripCreation extends AppCompatActivity {
                 Log.d("MAP - RESULT****", "CANCELLED");
             }
         }
-//        if(requestCode == 2){
-//            if(isNewTrip){
-//                isNewTrip = false;
-//                trip_pos =  dataPackage.tripData.size();
-//            }
-//        }
+        if(requestCode == 2){
+            dataPackage = DataPackage.readDataFromStorage(this);
+            tripData = dataPackage.tripData.get(trip_pos);
+        }
     }
 
     private final LocationListener mLocationListener = new LocationListener() {
