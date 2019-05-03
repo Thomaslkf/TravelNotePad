@@ -24,7 +24,7 @@
             android:layout_height="100dp"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:src="@drawable/time_node__active_part" />
+            android:src="@drawable/time_node__part" />
 
         <TextView
             android:id="@+id/numNode"
@@ -34,14 +34,12 @@
             android:layout_alignTop="@+id/lineNode"
             android:layout_alignEnd="@+id/lineNode"
             android:layout_alignBottom="@+id/lineNode"
-
-
             android:layout_marginStart="9dp"
             android:layout_marginTop="18dp"
             android:layout_marginEnd="9dp"
             android:layout_marginBottom="16dp"
             android:text="1"
-            android:textColor="@color/snow"
+
             android:textSize="20dp"
             android:textStyle="bold" />
 

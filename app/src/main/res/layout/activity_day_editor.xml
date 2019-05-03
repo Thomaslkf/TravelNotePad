@@ -65,7 +65,9 @@
             android:text="Pick New Checkpoint" />
 
     </LinearLayout>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/CheckpointWrapper"
         android:layout_width="match_parent"
@@ -85,6 +87,8 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp"
             android:background="#D0D0D0" />
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
@@ -106,5 +110,5 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

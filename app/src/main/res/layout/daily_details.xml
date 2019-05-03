@@ -8,7 +8,6 @@
     tools:context=".DailyDetails">
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/timeline_recycler"
         android:layout_width="wrap_content"
@@ -18,29 +17,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         >
 
-
     </androidx.recyclerview.widget.RecyclerView>
-
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        map:layout_constraintTop_toBottomOf="@+id/timeline_recycler"
-        />
-    <RelativeLayout
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/map"
-        android:layout_marginTop="10dp">
-        <TextView
+        app:layout_constraintTop_toBottomOf="@+id/timeline_recycler"
+        >
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Check point Deatils"/>
-    </RelativeLayout>
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            />
 
-
+            <TextView
+                android:layout_below="@id/map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check point Deatils"/>
+        </RelativeLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/finish_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Finish!"
+        android:textColor="@color/snow"
+        android:textSize="20dp"
+        android:background="@color/pink"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="goToNext"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
