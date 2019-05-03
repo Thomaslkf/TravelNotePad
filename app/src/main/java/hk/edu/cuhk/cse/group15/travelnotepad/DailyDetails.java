@@ -8,6 +8,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -52,6 +53,7 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
     Button finish_button;
     Bundle bundle;
     int checkpoint;
+    TextView title_details,content_location,content_location_next,content_description;
 
 
     @Override
@@ -80,6 +82,21 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
         timelineAdapter = new TimelineAdapter(dayActivities,checkpoint);
         timelineRecycler.setAdapter(timelineAdapter);
         timelineRecycler.setLayoutManager(layoutManager);
+
+        title_details = (TextView) findViewById(R.id.title_details);
+        content_location = (TextView)findViewById(R.id.content_location);
+        content_location_next = (TextView)findViewById(R.id.content_location_next);
+        content_description = (TextView)findViewById(R.id.content_description);
+
+        title_details.setText("Check point - "+Integer.toString(checkpoint+1));
+        content_location.setText(dayActivities.get(checkpoint).name);
+        if(checkpoint == dayActivities.size()-1){
+            content_location_next.setText("");
+        }else {
+            content_location_next.setText(dayActivities.get(checkpoint+1).name);
+        }
+        if(dayActivities.get(checkpoint).description != null)
+            content_location_next.setText(dayActivities.get(checkpoint).description);
 
 
     }
