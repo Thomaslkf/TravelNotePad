@@ -67,9 +67,11 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
             ,content_distance,content_duration;
 
     private NotificationManagerCompat notificationManager;
+    private NotificationManager notiManager;
 
     String distance[] = {"1.1","0.7","4.2","6.3","2.8","2.9","3.1","2.2","12.3","8.9"};
     String duration[] = {"5","3","5","8","10","10","6","4","15","12"};
+    CountDownTimer countDownTimer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +114,7 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
             content_location_next.setText(dayActivities.get(checkpoint+1).name);
         }
         if(dayActivities.get(checkpoint).description != null)
-            content_location_next.setText(dayActivities.get(checkpoint).description);
+            content_description.setText(dayActivities.get(checkpoint).description);
 
         if(checkpoint <10){
             content_distance.setText(distance[checkpoint]+" km");
@@ -124,7 +126,7 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
 
         notificationManager = NotificationManagerCompat.from(this);
         int timer = Integer.parseInt(duration[checkpoint]);
-        new CountDownTimer(timer* 60 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(timer* 2 * 1000, 1000) {
 
             public void onTick(long millisUntilFinished) {
             }
@@ -205,22 +207,6 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
         polyline = mMap.addPolyline((PolylineOptions) values[0]);
     }
 
-    private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.channel_name);
-            String description = getString(R.string.channel_description);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("group15", name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
-
 
     public  void sendNotification(){
         Log.d("haha","Notification created.");
@@ -238,6 +224,8 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
     public void goToNext(View v){
         Log.d("haha","finished for "+checkpoint);
         checkpoint = checkpoint + 1;
+        Log.d("haha","trying cancel");
+        countDownTimer.cancel();
         if ((checkpoint) == dayActivities.size()){
             Log.d("haha","meet END.");
             AlertDialog.Builder builder = new AlertDialog.Builder(DailyDetails.this);
@@ -256,4 +244,11 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Log.d("haha","pressed");
+        countDownTimer.cancel();
+        super.onBackPressed();
+
+    }
 }
