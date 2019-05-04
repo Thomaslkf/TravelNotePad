@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Travel Notepad</string>
     <string name="Trip_tile">Trip00</string>
+    <string name="channel_name">group15</string>
+    <string name="channel_description">nothing</string>
 </resources>
