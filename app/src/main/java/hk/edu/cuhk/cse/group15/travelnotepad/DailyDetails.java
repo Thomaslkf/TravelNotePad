@@ -1,9 +1,16 @@
 package hk.edu.cuhk.cse.group15.travelnotepad;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -26,8 +33,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.Calendar;
 import java.util.List;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,6 +65,8 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
     int checkpoint;
     TextView title_details,content_location,content_location_next,content_description
             ,content_distance,content_duration;
+
+    private NotificationManagerCompat notificationManager;
 
     String distance[] = {"1.1","0.7","4.2","6.3","2.8","2.9","3.1","2.2","12.3","8.9"};
     String duration[] = {"5","3","5","8","10","10","6","4","15","12"};
@@ -110,6 +122,17 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
             content_duration.setText(duration[checkpoint-10]+" mins");
         }
 
+        notificationManager = NotificationManagerCompat.from(this);
+        int timer = Integer.parseInt(duration[checkpoint]);
+        new CountDownTimer(timer* 60 * 1000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+            }
+
+            public void onFinish() {
+                sendNotification();
+            }
+        }.start();
     }
 
     @Override
@@ -180,6 +203,36 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
             polyline.remove();
         }
         polyline = mMap.addPolyline((PolylineOptions) values[0]);
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("group15", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+
+    public  void sendNotification(){
+        Log.d("haha","Notification created.");
+
+        Notification notification = new NotificationCompat.Builder(this,NotificationCreator.CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_alarm)
+                .setContentTitle("Time to Next point!")
+                .setContentText("It seems that you should start moving to next checkPoint!")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+        notificationManager.notify(1,notification);
     }
 
     public void goToNext(View v){
