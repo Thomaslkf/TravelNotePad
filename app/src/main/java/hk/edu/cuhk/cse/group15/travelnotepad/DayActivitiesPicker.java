@@ -1,9 +1,11 @@
 package hk.edu.cuhk.cse.group15.travelnotepad;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -52,10 +54,19 @@ public class DayActivitiesPicker extends AppCompatActivity {
     public void dayOnClick(View v){
         Gson gs = new Gson();
         int day = (int) v.getTag();
+        if(dataPackage.tripData.get(trip_pos).dayActivity.get(day).size() == 0){
+            final AlertDialog.Builder builder = new AlertDialog.Builder(DayActivitiesPicker.this);
+            builder.setTitle("No checkpoint found");
+            builder.setMessage("There is no checkpoint found.Please add it first!");
+            builder.setIcon(R.drawable.ic_alert);
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int whichButton) {
+                }}).show();
+        }else{
+            Intent intent = new Intent(this, DailyDetails.class);
+            intent.putExtra(EXTRA_TRIPDATA, gs.toJson(dataPackage.tripData.get(trip_pos).dayActivity.get(day), List.class));
 
-        Intent intent = new Intent(this, DailyDetails.class);
-        intent.putExtra(EXTRA_TRIPDATA, gs.toJson(dataPackage.tripData.get(trip_pos).dayActivity.get(day), List.class));
-
-        startActivityForResult(intent, 1);
+            startActivityForResult(intent, 1);
+        }
     }
 }

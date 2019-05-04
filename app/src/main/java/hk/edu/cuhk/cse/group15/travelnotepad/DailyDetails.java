@@ -231,7 +231,7 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
             AlertDialog.Builder builder = new AlertDialog.Builder(DailyDetails.this);
             builder.setTitle("End of Today");
             builder.setMessage("This is the last checkpoint today!");
-            builder.setIcon(android.R.drawable.ic_menu_info_details);
+            builder.setIcon(R.drawable.ic_info);
             builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
                 public void onClick(DialogInterface dialog, int whichButton) {
                    DailyDetails.this.finish();
