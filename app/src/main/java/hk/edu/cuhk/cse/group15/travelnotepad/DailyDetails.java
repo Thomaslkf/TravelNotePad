@@ -53,9 +53,11 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
     Button finish_button;
     Bundle bundle;
     int checkpoint;
-    TextView title_details,content_location,content_location_next,content_description;
+    TextView title_details,content_location,content_location_next,content_description
+            ,content_distance,content_duration;
 
-
+    String distance[] = {"1.1","0.7","4.2","6.3","2.8","2.9","3.1","2.2","12.3","8.9"};
+    String duration[] = {"5","3","5","8","10","10","6","4","15","12"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +89,8 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
         content_location = (TextView)findViewById(R.id.content_location);
         content_location_next = (TextView)findViewById(R.id.content_location_next);
         content_description = (TextView)findViewById(R.id.content_description);
+        content_distance = (TextView)findViewById(R.id.content_distance);
+        content_duration = (TextView)findViewById(R.id.content_duration);
 
         title_details.setText("Check point - "+Integer.toString(checkpoint+1));
         content_location.setText(dayActivities.get(checkpoint).name);
@@ -98,6 +102,13 @@ public class DailyDetails extends FragmentActivity implements OnMapReadyCallback
         if(dayActivities.get(checkpoint).description != null)
             content_location_next.setText(dayActivities.get(checkpoint).description);
 
+        if(checkpoint <10){
+            content_distance.setText(distance[checkpoint]+" km");
+            content_duration.setText(duration[checkpoint]+" mins");
+        }else {
+            content_distance.setText(distance[checkpoint-10]+" km");
+            content_duration.setText(duration[checkpoint-10]+" mins");
+        }
 
     }
 

@@ -7,109 +7,151 @@
     android:background="@color/snow"
     tools:context=".DailyDetails">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/timeline_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/timeline_recycler"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
-
-    </androidx.recyclerview.widget.RecyclerView>
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/timeline_recycler"
-        >
-        <RelativeLayout
+        </androidx.recyclerview.widget.RecyclerView>
+        <ScrollView
+            android:id="@+id/checkpoint_scroll"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp">
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:map="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            />
-
-            <TextView
-                android:id="@+id/title_details"
-                android:layout_below="@id/map"
+            android:layout_below="@+id/timeline_recycler"
+            >
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Check point - "
-                android:textSize="25dp"
-                android:textStyle="bold"/>
+                android:layout_marginTop="10dp">
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:map="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    />
 
-            <TextView
-                android:id="@+id/title_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title_details"
-                android:layout_marginTop="5dp"
-                android:text="Location: "
-                android:textSize="20dp"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/content_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title_location"
-                android:text="XXXXX"
-                android:textSize="20dp"
-                android:textStyle="italic"/>
+                <TextView
+                    android:id="@+id/title_details"
+                    android:layout_below="@id/map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check point - "
+                    android:textSize="25dp"
+                    android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/title_location_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/content_location"
-                android:text="Next: "
-                android:textSize="20dp"
-                android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/title_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title_details"
+                    android:layout_marginTop="10dp"
+                    android:text="Location: "
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/content_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title_location"
+                    android:text="XXXXX"
+                    android:textSize="20dp"
+                    android:textStyle="italic"/>
 
-            <TextView
-                android:id="@+id/content_location_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title_location_next"
-                android:text="XXXXX"
-                android:textSize="20dp"
-                android:textStyle="italic"/>
+                <TextView
+                    android:id="@+id/title_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/content_location"
+                    android:layout_marginTop="5dp"
+                    android:text="Description: "
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/title_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/content_location_next"
-                android:text="Description: "
-                android:textSize="20dp"
-                android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/content_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title_description"
+                    android:text=""
+                    android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/content_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title_description"
-                android:text=""
-                android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/title_location_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/content_description"
+                    android:layout_marginTop="10dp"
+                    android:text="Next: "
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
 
-        </RelativeLayout>
-    </ScrollView>
-    <Button
-        android:id="@+id/finish_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Finish!"
-        android:textColor="@color/snow"
-        android:textSize="20dp"
-        android:background="@color/pink"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:onClick="goToNext"
-        />
+                <TextView
+                    android:id="@+id/content_location_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title_location_next"
+                    android:text="XXXXX"
+                    android:textSize="20dp"
+                    android:textStyle="italic"/>
 
+                <TextView
+                    android:id="@+id/title_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/content_location_next"
+                    android:layout_marginTop="5dp"
+                    android:text="Distance: "
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/content_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title_distance"
+                    android:text=""
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/title_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/content_distance"
+                    android:layout_marginTop="5dp"
+                    android:text="Duration: "
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/content_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title_duration"
+                    android:text=""
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/finish_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/content_duration"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:text="Finish!"
+                    android:textColor="@color/snow"
+                    android:textSize="20dp"
+                    android:background="@color/pink"
+                    android:onClick="goToNext"
+                    />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
