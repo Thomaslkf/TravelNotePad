@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlActivated">#FBC02D</item>
+        <item name="android:fontFamily">@font/coolvetica</item>
     </style>
 
     <style name="MapTheme" parent="Theme.AppCompat.Light.NoActionBar">

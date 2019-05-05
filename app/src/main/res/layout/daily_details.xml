@@ -3,83 +3,97 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/snow"
     tools:context=".DailyDetails">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/timeline_recycler"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:orientation="horizontal"
             android:layout_centerHorizontal="true"
-            >
+            android:orientation="horizontal">
 
         </androidx.recyclerview.widget.RecyclerView>
+
         <ScrollView
             android:id="@+id/checkpoint_scroll"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_below="@+id/timeline_recycler"
-            >
+            android:layout_marginBottom="0dp"
+            android:paddingBottom="0dp">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:paddingBottom="16dp">
+
                 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:map="http://schemas.android.com/apk/res-auto"
                     xmlns:tools="http://schemas.android.com/tools"
                     android:id="@+id/map"
                     android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    />
+                    android:layout_height="250dp" />
 
                 <TextView
                     android:id="@+id/title_details"
-                    android:layout_below="@id/map"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Check point - "
+                    android:layout_below="@id/map"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="Checkpoint - "
                     android:textSize="25dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/title_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/title_details"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="8dp"
                     android:text="Location: "
                     android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/content_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/title_location"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:text="XXXXX"
                     android:textSize="20dp"
-                    android:textStyle="italic"/>
+                    android:textStyle="italic" />
 
                 <TextView
                     android:id="@+id/title_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/content_location"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="8dp"
                     android:text="Description: "
                     android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/content_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/title_description"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:text=""
                     android:textSize="20dp" />
 
@@ -88,35 +102,43 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/content_description"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="8dp"
                     android:text="Next: "
                     android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/content_location_next"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/title_location_next"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:text="XXXXX"
                     android:textSize="20dp"
-                    android:textStyle="italic"/>
+                    android:textStyle="italic" />
 
                 <TextView
                     android:id="@+id/title_distance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/content_location_next"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="8dp"
                     android:text="Distance: "
                     android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/content_distance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/title_distance"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:text=""
                     android:textSize="20dp" />
 
@@ -125,16 +147,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/content_distance"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="8dp"
                     android:text="Duration: "
                     android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/content_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/title_duration"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:text=""
                     android:textSize="20dp" />
 
@@ -143,14 +169,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/content_duration"
-                    android:layout_marginTop="10dp"
                     android:layout_alignParentBottom="true"
-                    android:text="Finish!"
-                    android:textColor="@color/snow"
-                    android:textSize="20dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="8dp"
                     android:background="@color/pink"
                     android:onClick="goToNext"
-                    />
+                    android:text="Finish!"
+                    android:textColor="@color/snow"
+                    android:textSize="20dp" />
             </RelativeLayout>
         </ScrollView>
     </RelativeLayout>
